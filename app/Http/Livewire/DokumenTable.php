@@ -9,29 +9,26 @@ use Livewire\WithFileUploads;
 class DokumenTable extends Component
 {
     use WithFileUploads;
-    public $fileTitle, $fileName;
+    public $user_id, $judul, $filenya;
   
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
+   
     public function submit()
     {
-        $dataValid = $this->validate([
+        $data = $this->validate([
             'user_id' => 'required',
             'judul' => 'required',
-            'filenya' => 'required|pdf|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
+            'filenya' => 'required',
         ]);
   
-        $dataValid['filenya'] = $this->filenya->store('todos', 'public');
+        $filename= $this->filenya->store('dokumens', 'public');
+        $data['file_name'] = $filename;
   
-        Dokumen::create($dataValid);
+        Dokumen::create($data);
   
         session()->flash('message', 'File uploaded.');
     }
     public function render()
     {
-        return view('livewire.dok-file');
+        return view('livewire.dokumen-table');
     }
 }

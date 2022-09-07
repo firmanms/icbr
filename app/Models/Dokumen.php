@@ -11,6 +11,6 @@ class Dokumen extends Model
     protected $fillable = [
         'user_id', 
         'judul',
-        'filenya'
+        'image',
     ];
 }

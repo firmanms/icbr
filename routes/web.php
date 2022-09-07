@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DokumenController;
 use Illuminate\Support\Facades\Route;
 //use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
@@ -36,8 +37,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
-    Route::get('document', [\App\Http\Controllers\ProfileController::class, 'show'])->name('document.show');
+    // Route::get('document', [\App\Http\Controllers\ProfileController::class, 'show'])->name('document.show');
     Route::resource('/users', UserController::class);
+    // Route::get('document', function () {
+    //     return view('document');
+    // })->name('document.show');
+    Route::resource('document', DokumenController::class);
+
 
 //Route search
 Route::get('/search', [UserController::class, 'search'])->name('search');
